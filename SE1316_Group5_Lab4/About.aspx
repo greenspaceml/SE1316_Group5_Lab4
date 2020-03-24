@@ -15,5 +15,5 @@
         About
     </h2>
     <p class="style1">
-        <strong>C# course from 16 Feb to 05 Apr 2020000000</strong></p>
+        <strong>C# course from 16 Feb to 05 Apr 2020</strong></p>
 </asp:Content>
