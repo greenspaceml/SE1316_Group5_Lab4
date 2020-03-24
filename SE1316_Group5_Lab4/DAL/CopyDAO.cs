@@ -7,7 +7,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SE1316_Group5_Lab4.DAL {
     class CopyDAO {
@@ -72,7 +71,7 @@ namespace SE1316_Group5_Lab4.DAL {
 
             cmd.Parameters.AddWithValue("@copyNumber", b);
             cmd.Parameters.AddWithValue("@type", type);
-            MessageBox.Show(b + "");
+           // MessageBox.Show(b + "");
             return DAO.UpdateTable(cmd);
         }
 

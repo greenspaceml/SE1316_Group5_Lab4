@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-using System.Windows.Forms;
 
 namespace SE1316_Group5_Lab4.DAL {
     class DAO {
@@ -19,7 +18,7 @@ namespace SE1316_Group5_Lab4.DAL {
                 da.Fill(ds);
                 return ds.Tables[0];
             } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
                 return null;
             }
         }
@@ -35,7 +34,7 @@ namespace SE1316_Group5_Lab4.DAL {
 
             } catch (Exception ex) {
 
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
                 return false;
 
             }
