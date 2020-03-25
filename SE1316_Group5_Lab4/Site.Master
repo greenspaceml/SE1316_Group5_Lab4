@@ -35,7 +35,7 @@
                     <Items>
                         <asp:MenuItem Text="Home" Value="Home" NavigateUrl="~/Default.aspx"></asp:MenuItem>
                         <asp:MenuItem Text="Book" Value="Book" NavigateUrl="~/GUI/BookGUI.aspx"></asp:MenuItem>
-                        <asp:MenuItem Text="Member" Value="Member" NavigateUrl="~/GUI/BorrowerGUI.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Member" Value="Member" NavigateUrl="~/GUI/MemberGUI.aspx"></asp:MenuItem>
                         <asp:MenuItem Text="Borrow" Value="Borrow" NavigateUrl="~/GUI/BorrowGUI.aspx"></asp:MenuItem>
                         <asp:MenuItem Text="Return" Value="Return" NavigateUrl="~/GUI/ReturnGUI.aspx"></asp:MenuItem>
                         <asp:MenuItem Text="Reserve" Value="Reserve" 
