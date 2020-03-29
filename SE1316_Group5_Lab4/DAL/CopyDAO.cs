@@ -17,13 +17,17 @@ namespace SE1316_Group5_Lab4.DAL {
         }
         public static int GetCopyNumberMax() {
             DataTable dt = GetDataTable();
-            if (dt.Rows.Count == 0) return 0;
-            else return (int)(dt.Compute("max(copyNumber)", ""));
+            if (dt.Rows.Count == 0)
+                return 0;
+            else
+                return (int) (dt.Compute("max(copyNumber)", ""));
         }
         public static int GetSequenceNumberMax(int bookNumber) {
             DataTable dt = GetDataTable();
-            if (dt.Rows.Count == 0) return 0;
-            else return (int)(dt.Compute("max(sequenceNumber)", "" ));
+            if (dt.Rows.Count == 0)
+                return 0;
+            else
+                return (int) (dt.Compute("max(sequenceNumber)", ""));
         }
         public static Copy GetCopy(int copyNumber) {
             SqlConnection conn = new SqlConnection(strConn);
@@ -33,10 +37,10 @@ namespace SE1316_Group5_Lab4.DAL {
             Copy c = new Copy();
             using (SqlDataReader reader = cmd.ExecuteReader()) {
                 while (reader.Read()) {
-                    c.BookNumber = (int)reader["bookNumber"];
-                    c.SequenceNumber = (int)reader["sequenceNumber"];
+                    c.BookNumber = (int) reader["bookNumber"];
+                    c.SequenceNumber = (int) reader["sequenceNumber"];
                     c.Type = char.Parse(reader["type"].ToString());
-                    c.Price = (double)reader["price"];
+                    c.Price = (double) reader["price"];
                 }
             }
             conn.Close();
@@ -71,13 +75,23 @@ namespace SE1316_Group5_Lab4.DAL {
 
             cmd.Parameters.AddWithValue("@copyNumber", b);
             cmd.Parameters.AddWithValue("@type", type);
-           // MessageBox.Show(b + "");
+            // MessageBox.Show(b + "");
             return DAO.UpdateTable(cmd);
         }
 
         public static Boolean Delete(int copyNumber) {
             SqlCommand cmd = new SqlCommand("delete copy where copyNumber=@copyNumber");
             cmd.Parameters.AddWithValue("@copyNumber", copyNumber);
+            return DAO.UpdateTable(cmd);
+        }
+
+        public bool UpdateType(int copyNumber) {
+            SqlCommand cmd = new SqlCommand("update copy set " +
+                "type=@type " +
+                "where copyNumber = @copyNumber");
+            cmd.Parameters.AddWithValue("@copyNumber", copyNumber);
+            cmd.Parameters.AddWithValue("@type", "A");
+
             return DAO.UpdateTable(cmd);
         }
     }

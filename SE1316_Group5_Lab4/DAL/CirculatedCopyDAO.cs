@@ -16,6 +16,7 @@ namespace SE1316_Group5_Lab4.DAL {
             string cmd = "select * from CirculatedCopy";
             return DAO.GetDataTable(cmd);
         }
+
         public static void Insert(CirculatedCopy cc) {
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();
@@ -42,6 +43,74 @@ namespace SE1316_Group5_Lab4.DAL {
         }
 
         public static void Update(CirculatedCopy cc) {
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("update CirculatedCopy set returnedDate=@returnedDate, fineAmount=@fineAmount " +
+                    "where id=@id", conn);
+            cmd.Parameters.AddWithValue("@id", cc.Id);
+            cmd.Parameters.AddWithValue("@returnedDate", cc.ReturnedDate);
+            cmd.Parameters.AddWithValue("@fineAmount", cc.FineAmount);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public DataTable GetCopiesOfBorrow (int borrowerNumber, string name) {
+            SqlConnection conn = new SqlConnection(strConn);
+            SqlCommand cmd = new SqlCommand(@"SELECT        CirculatedCopy.*
+                            FROM Borrower INNER JOIN
+                                 CirculatedCopy ON Borrower.borrowerNumber = CirculatedCopy.borrowerNumber
+                            where Borrower.borrowerNumber = @bn and Borrower.name like @name and returnedDate is null", conn);
+            cmd.Parameters.AddWithValue("@bn", borrowerNumber);
+            cmd.Parameters.AddWithValue("@name", name);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+
+        public DateTime GetDueDate(int id) {
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(@"SELECT [dueDate]
+                                              FROM[Library].[dbo].[CirculatedCopy]
+                                              WHERE ID = @id", conn);
+
+            cmd.Parameters.AddWithValue("@id", id);
+
+            DateTime date = new DateTime();
+
+            using (SqlDataReader reader = cmd.ExecuteReader()) {
+                while (reader.Read()) {
+                    date = Convert.ToDateTime(reader["dueDate"]);
+                }
+                conn.Close();
+            }
+
+            return date;
+        }
+
+        public int GetCopyNumber(int id) {
+            SqlConnection conn = new SqlConnection(strConn);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(@"SELECT [copyNumber]
+                                              FROM[Library].[dbo].[CirculatedCopy]
+                                              WHERE ID = @id", conn);
+
+            cmd.Parameters.AddWithValue("@id", id);
+
+            int copyNumber = 0;
+
+            using (SqlDataReader reader = cmd.ExecuteReader()) {
+                while (reader.Read()) {
+                    copyNumber = Convert.ToInt32(reader["copyNumber"]);
+                }
+                conn.Close();
+            }
+
+            return copyNumber;
+        }
+
+        public void UpdateReturn(CirculatedCopy cc) {
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();
             SqlCommand cmd = new SqlCommand("update CirculatedCopy set returnedDate=@returnedDate, fineAmount=@fineAmount " +

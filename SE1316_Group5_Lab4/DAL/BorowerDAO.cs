@@ -18,16 +18,16 @@ namespace SE1316_Group5_Lab4.DAL {
         public static Borrower GetBorrower(int borrowerNumber) {
             SqlConnection conn = new SqlConnection(strConn);
             conn.Open();
-            SqlCommand cmd = new SqlCommand("select * from Borrower where borrowerNumber = @bn",conn);
+            SqlCommand cmd = new SqlCommand("select * from Borrower where borrowerNumber = @bn", conn);
             cmd.Parameters.AddWithValue("@bn", borrowerNumber);
             Borrower b = new Borrower();
             using (SqlDataReader reader = cmd.ExecuteReader()) {
-                while(reader.Read()){
-                    b.Name = (string)reader["name"];
+                while (reader.Read()) {
+                    b.Name = (string) reader["name"];
                     //b.Sex = (char)reader["sex"];
-                    b.Address = (string)reader["address"];
-                    b.Telephone = (string)reader["telephone"];
-                    b.Email = (string)reader["email"];
+                    b.Address = (string) reader["address"];
+                    b.Telephone = (string) reader["telephone"];
+                    b.Email = (string) reader["email"];
                 }
                 conn.Close();
             }
@@ -39,22 +39,24 @@ namespace SE1316_Group5_Lab4.DAL {
             return DAO.GetDataTable(cmd);
         }
 
+        public DataTable GetDataTableBorrower() {
+            string cmd = "select * from Borrower";
+            return DAO.GetDataTable(cmd);
+        }
+
         public bool Insert(Borrower b) {
             SqlCommand cmd = new SqlCommand("INSERT INTO [dbo].[Borrower]"
-                                           + "([borrowerNumber]"
-                                           + ",[name]"
+                                           + "([name]"
                                            + ",[sex]"
                                            + ",[address]"
                                            + ",[telephone]"
                                            + ",[email])"
                                         + "VALUES"
-                                          + "(@borrowerNumber"
-                                          + ", @name"
+                                          + "(@name"
                                           + ", @sex"
                                           + ", @address"
                                           + ", @telephone"
                                           + ", @email)");
-            cmd.Parameters.AddWithValue("@borrowerNumber", b.BorrowerNumber);
             cmd.Parameters.AddWithValue("@name", b.Name);
             cmd.Parameters.AddWithValue("@sex", b.Sex);
             cmd.Parameters.AddWithValue("@address", b.Address);

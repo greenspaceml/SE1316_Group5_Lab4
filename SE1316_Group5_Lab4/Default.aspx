@@ -44,20 +44,20 @@
         <strong>WELCOME TO LIBRARY SYSTEM! </strong>
     </h2>
     <p>
-        <span class="style1">Author: SE1318, Group 1 - Mar 2020</p>
+        <span class="style1">Author: SE1316, Group 5 - Mar 2020</p>
 </span>
         <span class="style4">
 <p class="style5">
-        1) Nguyen Tuan Anh: Register book...</p>
+        1) Đỗ Thành Đạt: Member, Return</p>
 </span>
         <span class="style6">
-<p class="style7">
-        ...</p>
 </span>
         <span class="style8">
 <p>
-        5) Hoang Thi Hien: Reserve a book....</p>
-</span>
+        2) Đỗ Huy Hoàng:</p>
     <p>
-        &nbsp;</p>
-</asp:Content>
+        3) Hoàng Hồng Quang:</p>
+    <p>
+        4) Nguyễn Minh Hiếu: </p>
+</span>
+    </asp:Content>

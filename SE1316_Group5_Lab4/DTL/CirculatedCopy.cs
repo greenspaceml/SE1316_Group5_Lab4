@@ -60,6 +60,10 @@ namespace SE1316_Group5_Lab4.DTL {
             set { fineAmount = value; }
         }
 
+        public CirculatedCopy() {
+
+        }
+
         public CirculatedCopy(int copyNumber, int borrowerNumber)
         {
             this.copyNumber = copyNumber;

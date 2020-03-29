@@ -11,6 +11,7 @@ namespace SE1316_Group5_Lab4.DTL {
         public int BorrowerNumber
         {
             get { return borrowerNumber; }
+            set { borrowerNumber = value; }
         }
 
 

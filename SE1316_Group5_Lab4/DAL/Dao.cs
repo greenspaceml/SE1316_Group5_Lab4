@@ -18,8 +18,7 @@ namespace SE1316_Group5_Lab4.DAL {
                 da.Fill(ds);
                 return ds.Tables[0];
             } catch (Exception ex) {
-                //MessageBox.Show(ex.Message);
-                return null;
+                throw ex;
             }
         }
 
@@ -33,12 +32,8 @@ namespace SE1316_Group5_Lab4.DAL {
                 return true;
 
             } catch (Exception ex) {
-
-                //MessageBox.Show(ex.Message);
-                return false;
-
+                throw ex;
             }
-
         }
     }
 
