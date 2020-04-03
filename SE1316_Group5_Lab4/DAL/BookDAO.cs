@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace SE1316_Group5_Lab4.DAL {
     class BookDAO {
         public static DataTable GetDataTable() {
-            string cmd = "select * from Book";
+            string cmd = "select * from Bookaaaa";
             return DAO.GetDataTable(cmd);
         }
 
